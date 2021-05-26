@@ -1,2 +1,2 @@
-spam = input ("Ein Hinweistext")
+spam = input ("Ein Hinweistext: ")
 print(spam)
