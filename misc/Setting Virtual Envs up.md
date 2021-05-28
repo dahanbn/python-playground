@@ -1,3 +1,5 @@
+Useful link about Python venv: https://python.land/virtual-environments/virtualenv#Linux_and_MacOS_venv_activation
+
 ## 2.2 Python Virtual Environment
 
 Now that you have Python 3.8.0 installed on your computer, completely separate from any system installed Python, you might think you’re ready to go. Even with a version of Python installed using the pyenv utility, you’ll want to use another level of decoupling from that version in your projects.
