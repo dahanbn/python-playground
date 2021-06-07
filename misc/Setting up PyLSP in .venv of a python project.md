@@ -75,9 +75,10 @@ Sublime Text has had its first major upgrade since 2017 with Sublime Text 4.
       In your project’s virtual environment (you are using a virtual environment, right?)
     
   
-
+On Windows:
   pip install python-lsp-server[all] python-lsp-black mypy-ls pyls-isort
-  
+On Mac:
+  pip install python-lsp-server\[all\] python-lsp-black mypy-ls pyls-isort
 
   And any other PyLSP plugins you see fit, these are the ones I use most.
 
