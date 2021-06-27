@@ -130,3 +130,7 @@ dmypy.json
 
 # MacOs Data Store
 .DS_Store
+
+# personal Data in project
+Assimil-to-html/input
+Assimil-to-html/output
