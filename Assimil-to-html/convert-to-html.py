@@ -1,20 +1,20 @@
 import csv
 
-lesson_file = 'Assimil-to-html/Assimil-lecciones.csv'
+lesson_file = 'Assimil-to-html/input/Assimil-lecciones.csv'
 lesson_dictionary_keys = ["soundfile",
                           "lesson-nr",
                           "sentence-nr",
                           "sentence-foreign",
                           "sentence-translated"]
 
-exercise1_file = 'Assimil-to-html/Assimil-ejercicios1.csv'
+exercise1_file = 'Assimil-to-html/input/Assimil-ejercicios1.csv'
 exercise1_dictionary_keys = ["soundfile",
                              "lesson-nr",
                              "exercise-nr",
                              "exercise-foreign",
                              "exercise-translated"]
 
-exercise2_file = 'Assimil-to-html/Assimil-ejercicios2.csv'
+exercise2_file = 'Assimil-to-html/input/Assimil-ejercicios2.csv'
 exercise2_dictionary_keys = ["exercise-foreign",
                              "exercise-translated"
                              "lesson-nr",
@@ -44,7 +44,6 @@ with open(exercise2_file, newline='') as csvfile:
         exercises2.append(row)
 
 current_lesson_nr = "0"
-
 course = {}
 
 for row in lessons:
@@ -60,6 +59,9 @@ for row in lessons:
         course[current_lesson_nr]['sentences'] = []
     # addding lesson title    
     if row['sentence-nr'] == '0a':
+        course[current_lesson_nr]['lesson-foreign'] = row['sentence-foreign']
+        course[current_lesson_nr]['lesson-translated'] = row['sentence-translated']
+    elif row['sentence-nr'] == '0':
         course[current_lesson_nr]['title-foreign'] = row['sentence-foreign']
         course[current_lesson_nr]['title-translated'] = row['sentence-translated']
     else:
@@ -71,11 +73,27 @@ for row in lessons:
                 }
         course[current_lesson_nr]['sentences'].append(sentence)
 
-
-print(course['1'])
-
-keys = list(course.keys())
-
-keys.sort()
+for row in exercises1:
+    pass
 
 
+sorted_lessons = []
+
+# convert keys from str to int for proper lesson sorting
+for key in course.keys():
+    sorted_lessons.append(int(key))
+
+sorted_lessons.sort()
+
+for lesson in sorted_lessons:
+    # first convert lesson back to string because that's the dictionary key
+    lesson_key = str(lesson)
+    # setting variables for special contents
+    lesson_nr = lesson_key
+    lesson_foreign = course.get(lesson_key).get('lesson-foreign')
+    lesson_translated = course.get(lesson_key).get('lesson-translated')
+    title_foreign = course.get(lesson_key).get('title-foreign')
+    title_translated = course.get(lesson_key).get('title-translated')
+    print(f"{lesson_foreign} - {lesson_translated}")
+    print(f"{title_foreign} - {title_translated}")  
+    
