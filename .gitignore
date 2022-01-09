@@ -134,3 +134,4 @@ dmypy.json
 # personal Data in project
 Assimil-to-html/input
 Assimil-to-html/output
+*.csv
