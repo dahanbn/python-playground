@@ -1,0 +1,17 @@
+{
+  "actions" : {
+    "build" : {
+      "enabled" : true,
+      "script" : "#!\/usr\/bin\/env zsh\necho \"Test\"\necho \"Running $1\"\npython $1"
+    },
+    "run" : {
+      "enabled" : true,
+      "script" : "#!\/bin\/bash\n#\n# Open new iTerm window from the command line\n#\n# Usage:\n#     iterm                   Opens the current directory in a new iTerm window\n#     iterm [PATH]            Open PATH in a new iTerm window\n#     iterm [CMD]             Open a new iTerm window and execute CMD\n#     iterm [PATH] [CMD] ...  You can prob'ly guess\n#\n# Example:\n#     iterm ~\/Code\/HelloWorld .\/setup.sh\n#\n# References:\n#     iTerm AppleScript Examples:\n#     https:\/\/gitlab.com\/gnachman\/iterm2\/wikis\/Applescript\n# \n# Credit:\n#     Inspired by tab.bash by @bobthecow\n#     link: https:\/\/gist.github.com\/bobthecow\/757788\n#\n\n# OSX only\n[ `uname -s` != \"Darwin\" ] && return\n\nfunction iterm () {\n\tlocal cmd=\"\"\n\tlocal wd=\"$PWD\"\n\tlocal args=\"$@\"\n\n\tif [ -d \"$1\" ]; then\n\t\twd=\"$1\"\n\t\targs=\"${@:2}\"\n\tfi\n\n\tif [ -n \"$args\" ]; then\n\t\t# echo $args\n\t\tcmd=\"; $args\"\n\tfi\n\n\tosascript &>\/dev\/null <<EOF\n\t\ttell application \"iTerm\"\n\t\t\tactivate\n\t\t\tset term to (make new terminal)\n\t\t\ttell term\n\t\t\t\tlaunch session \"Default Session\"\n\t\t\t\ttell the last session\n\t\t\t\t\tdelay 1\n\t\t\t\t\twrite text \"cd $wd$cmd\"\n\t\t\t\tend\n\t\t\tend\n\t\tend tell\nEOF\n}\niterm $@"
+    }
+  },
+  "arguments" : [
+    "python",
+    "${File}"
+  ],
+  "openLogOnRun" : "start"
+}
