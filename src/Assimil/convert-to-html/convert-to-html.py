@@ -44,16 +44,16 @@ with open(exercise2_file, newline='') as csvfile:
         exercises2.append(row)
 
 # setting lesson title for revision lessons
-# revision_lesson_foreign = ""
+# revision_title_foreign = ""
 
 # italian
-# revision_lesson_foreign = ""
+# revision_title_foreign = ""
 
 # spanish
-revision_lesson_foreign = "Revisión y notas"
+revision_title_foreign = "Revisión y notas"
 
 # revision_lesson_translated is always the same
-revision_lesson_translated = "Wiederholung und Anmerkungen"
+revision_title_translated = "Wiederholung und Anmerkungen"
 
 current_lesson_nr = "0"
 course = {}
@@ -73,6 +73,13 @@ for row in lessons:
     if row['sentence-nr'] == '0a':
         course[current_lesson_nr]['lesson-foreign'] = row['sentence-foreign']
         course[current_lesson_nr]['lesson-translated'] = row['sentence-translated']
+        
+        # adding manually title-foreign & title-translated for revision notes
+        # they only have a sentence 0a, not 0 - therefore the logic must be here
+        
+        if int(current_lesson_nr) % 7 == 0:
+            course[current_lesson_nr]['title-foreign'] = revision_title_foreign
+            course[current_lesson_nr]['title-translated'] = revision_title_translated
     elif row['sentence-nr'] == '0':
         course[current_lesson_nr]['title-foreign'] = row['sentence-foreign']
         course[current_lesson_nr]['title-translated'] = row['sentence-translated']
