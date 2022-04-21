@@ -76,6 +76,7 @@ for row in lessons:
         
         # adding manually title-foreign & title-translated for revision notes
         # they only have a sentence 0a, not 0 - therefore the logic must be here
+        # revision lessons are multiples of 7
         
         if int(current_lesson_nr) % 7 == 0:
             course[current_lesson_nr]['title-foreign'] = revision_title_foreign
@@ -115,3 +116,11 @@ for lesson in sorted_lessons:
     title_translated = course.get(lesson_key).get('title-translated')
     print(f"{lesson_foreign} - {lesson_translated}")
     print(f"{title_foreign} - {title_translated}")
+       
+    if course.get(lesson_key).get('sentences'):
+       # print(course.get(lesson_key).get('sentences'))
+       pass
+    else:
+        # if there aren't sentences entries then it must be a revision lesson
+        pass
+
