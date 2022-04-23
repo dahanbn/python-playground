@@ -1,20 +1,20 @@
 import csv
 
-lesson_file = './input/Assimil-lecciones.csv'
+lesson_file = './Anki-input/Assimil-lecciones.csv'
 lesson_dictionary_keys = ["soundfile",
                           "lesson-nr",
                           "sentence-nr",
                           "sentence-foreign",
                           "sentence-translated"]
 
-exercise1_file = './input/Assimil-ejercicios1.csv'
+exercise1_file = './Anki-input/Assimil-ejercicios1.csv'
 exercise1_dictionary_keys = ["soundfile",
                              "lesson-nr",
                              "exercise-nr",
                              "exercise-foreign",
                              "exercise-translated"]
 
-exercise2_file = './input/Assimil-ejercicios2.csv'
+exercise2_file = './Anki-input/Assimil-ejercicios2.csv'
 exercise2_dictionary_keys = ["exercise-foreign",
                              "exercise-translated"
                              "lesson-nr",
